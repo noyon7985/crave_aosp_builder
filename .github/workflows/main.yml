@@ -77,7 +77,7 @@ jobs:
       run: |
         mkdir ${{ github.event.inputs.DEVICE_NAME }}
         cd ${{ github.event.inputs.DEVICE_NAME }}
-      continue-on-error: true
+      continue-on-error: false
 
       # [TO-DO] Drop this whenever we can.
     - name: Install gh command
