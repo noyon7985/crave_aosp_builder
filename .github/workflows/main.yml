@@ -102,7 +102,8 @@ jobs:
         git config --global user.name "$USERNAME"
         git config --global user.email "$EMAIL"
         echo "https://$USERNAME:$TOKEN@github.com" > ~/.git-credentials
-        
+        git config --global credential.helper "store --file ~/.git-credentials"
+
       # Initialize the previously choosen 'repo' project.
     - name: Configure the 'repo' environment
       run: |
