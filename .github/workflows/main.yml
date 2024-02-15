@@ -96,8 +96,14 @@ jobs:
       # Generate 'git' credential in base of the workflow's author.
     - name: Set-up 'git' credential(s)
       run: |
-        git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+        git config --global user.email "{$GH_EMAIL}"
+        git config --global user.name "{$GH_USERNAME}"
+        echo "https://{$GH_USERNAME}:{$GH_TOKEN}@github.com" > ~/.git-credentials
+        git config --global credential.helper "store --file ~/.git-credentials"
+      env:
+        GH_EMAIL: ${{ secrets.GH_EMAIL }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_USERNAME: ${{ secrets.GH_USERNAME }}
 
       # Initialize the previously choosen 'repo' project.
     - name: Configure the 'repo' environment
@@ -128,8 +134,8 @@ jobs:
         envsubst < ${PWD}/crave.conf.sample >> ${PWD}/crave.conf
         rm -rf ${PWD}/crave.conf.sample
       env:
-        CRAVE_USERNAME: ${{  secrets.CRAVE_USERNAME  }}
-        CRAVE_TOKEN: ${{  secrets.CRAVE_TOKEN  }}
+        CRAVE_USERNAME: ${{ secrets.CRAVE_USERNAME }}
+        CRAVE_TOKEN: ${{ secrets.CRAVE_TOKEN }}
 
       # Create a 'crave' job for building.
     - name: Start compilation through 'crave'
