@@ -6,6 +6,10 @@
 #
 
 name: Start job for building through Crave.
+env:
+  GH_EMAIL: ${{ secrets.GH_EMAIL }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  GH_USERNAME: ${{ secrets.GH_USERNAME }}
 on:
   workflow_dispatch:
     # Various inputs to simplify usage of workflow.
@@ -78,6 +82,16 @@ jobs:
     - name: Check-out to repository
       uses: actions/checkout@v4
 
+      # Set-up a build date.
+    - name: Set-up build date
+      id: get-date
+      run: |
+        sudo timedatectl set-timezone Asia/Jakarta
+
+      # Set-up output.
+    - name: Set-up output
+      run: echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
+
       # Set-up a spearate directory for the device.
     - name: Set-up workspace environment
       run: |
@@ -96,14 +110,10 @@ jobs:
       # Generate 'git' credential in base of the workflow's author.
     - name: Set-up 'git' credential(s)
       run: |
-        git config --global user.email "{$GH_EMAIL}"
-        git config --global user.name "{$GH_USERNAME}"
-        echo "https://{$GH_USERNAME}:{$GH_TOKEN}@github.com" > ~/.git-credentials
+        git config --global user.email "$GH_EMAIL"
+        git config --global user.name "$GH_USERNAME"
+        echo "https://$GH_USERNAME:$GH_TOKEN@github.com" > ~/.git-credentials
         git config --global credential.helper "store --file ~/.git-credentials"
-      env:
-        GH_EMAIL: ${{ secrets.GH_EMAIL }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        GH_USERNAME: ${{ secrets.GH_USERNAME }}
 
       # Initialize the previously choosen 'repo' project.
     - name: Configure the 'repo' environment
@@ -157,8 +167,9 @@ jobs:
         repo sync -c -j$(nproc --all) --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
 
         # Set up build environment
-        export BUILD_USERNAME=${{ github.actor }} ; \
+        export BUILD_USERNAME=$GH_USERNAME ; \
         export BUILD_HOSTNAME=crave ; \
+        export TZ=Asia/Jakarta ; \
         source build/envsetup.sh && \
 
         # Build the ROM
