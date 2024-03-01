@@ -205,14 +205,13 @@ jobs:
         repo sync -c -j\$(nproc --all) --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
         
         # Set up build environment
-        export BUILD_USERNAME=$GH_USERNAME ; \
-        export BUILD_HOSTNAME=crave ; \
+        export BUILD_USER=$GH_USERNAME ; \
+        export BUILD_HOST=crave ; \
         export TZ=Asia/Jakarta ; \
         source build/envsetup.sh && \
 
         # Build the ROM
         lunch ${{ github.event.inputs.PRODUCT_NAME }}-${{ github.event.inputs.BUILD_TYPE }} && \
-        make installclean && \
         ${{ github.event.inputs.BUILD_COMMAND }}"
 
       # Only reach this wheter the user killed the workflow.
