@@ -203,7 +203,7 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
-        export KBUILD_BUILD_USER=queen ; \
+        export KBUILD_BUILD_USER=noyon ; \
         export KBUILD_BUILD_HOST=$(source /etc/os-release) ; \
         source build/envsetup.sh && \
 
