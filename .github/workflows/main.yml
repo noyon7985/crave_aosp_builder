@@ -177,6 +177,11 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
+        export MAINTAINER=NoYoN
+        export AWAKEN_MAINTAINER=NoYoN
+        export AWAKEN_GAPPS=false
+        export WITH_GMS=false
+        export WITH_GAPPS=false
         source build/envsetup.sh && \
 
         # Build the ROM
