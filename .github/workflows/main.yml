@@ -215,15 +215,15 @@ jobs:
             export BUILD_DIFFERENT_ROM="repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13"
           ;;
           "LineageOS 21.0")
-            repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
+            repo init -u https://github.com/LineageOS/android.git -b lineage-21.0
             export BUILD_DIFFERENT_ROM="repo init -u https://github.com/LineageOS/android.git -b lineage-21.0"
           ;;
           "LineageOS 20.0")
-            repo init -u https://github.com/accupara/los20.git -b lineage-20.0 --git-lfs
+            repo init -u https://github.com/accupara/los20.git -b lineage-20.0
             export BUILD_DIFFERENT_ROM="repo init -u https://github.com/accupara/los20.git -b lineage-20.0"
           ;;
           "CipherOS 14")
-            repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs
+            repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen
             export BUILD_DIFFERENT_ROM="repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen"
           ;;
         esac
