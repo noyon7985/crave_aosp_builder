@@ -31,7 +31,7 @@ on:
       LOCAL_MANIFEST:
         description: "Personal local manifest [repository or raw]:"
         required: true
-        default: 'https://github.com/sounddrill31/local_manifests'
+        default: 'https://github.com/eurekadevelopment/local_manifests'
       LOCAL_MANIFEST_BRANCH:
         description: "Personal local manifest's branch:"
         required: false
@@ -157,19 +157,19 @@ jobs:
             if [ "${{ github.event.inputs.BUILD_DIFFERENT_ROM }}" == "echo 'Build Starting!'" ]; then
               case "${{ github.event.inputs.BASE_PROJECT }}" in
                   "ArrowOS 13.1")
-                    repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1 --depth=1
+                    repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1
                   ;;
                   "DerpFest 13.0")
-                    repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13 --depth=1
+                    repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13
                   ;;
                   "LineageOS 21.0")
-                    repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs --depth=1
+                    repo init -u https://github.com/LineageOS/android.git -b lineage-21.0
                   ;;
                   "LineageOS 20.0")
-                    repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1
+                    repo init -u https://github.com/LineageOS/android.git -b lineage-20.0
                   ;;
                   "CipherOS 14")
-                    repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs --depth=1
+                    repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen
                   ;;
               esac
              else
@@ -207,24 +207,24 @@ jobs:
         cd $PROJECTFOLDER
         case "${{ github.event.inputs.BASE_PROJECT }}" in
           "ArrowOS 13.1")
-            repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1 --depth=1
-            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1 --depth=1"
+            repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1
+            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1"
           ;;
           "DerpFest 13.0")
-            repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13 --depth=1
-            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13 --depth=1"
+            repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13
+            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13"
           ;;
           "LineageOS 21.0")
-            repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs --depth=1
-            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs --depth=1"
+            repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
+            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/LineageOS/android.git -b lineage-21.0"
           ;;
           "LineageOS 20.0")
-            repo init -u https://github.com/accupara/los20.git -b lineage-20.0 --git-lfs --depth=1
-            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/accupara/los20.git -b lineage-20.0 --git-lfs --depth=1"
+            repo init -u https://github.com/accupara/los20.git -b lineage-20.0 --git-lfs
+            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/accupara/los20.git -b lineage-20.0"
           ;;
           "CipherOS 14")
-            repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs --depth=1
-            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs --depth=1"
+            repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs
+            export BUILD_DIFFERENT_ROM="repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen"
           ;;
         esac
         if [ "${{ github.event.inputs.BUILD_DIFFERENT_ROM }}" == "echo 'Build Starting!'" ]; then
@@ -246,7 +246,7 @@ jobs:
         crave run --no-patch --${CLEAN} "rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && \
         # Clone local_manifests repository
         $BUILD_DIFFERENT_ROM ; \
-        git clone ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests && \
+        git clone ${{ github.event.inputs.LOCAL_MANIFEST }} -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests && \
 
         if [ ! $? == 0 ]; then \
           curl -o .repo/local_manifests ${{ github.event.inputs.LOCAL_MANIFEST }}; \
