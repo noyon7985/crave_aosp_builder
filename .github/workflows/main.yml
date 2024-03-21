@@ -265,6 +265,8 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
+        export MAINTAINER=NoYoN ; \
+        export EVEREST_MAINTAINER=NoYoN ; \
         source build/envsetup.sh && \
 
         # Build the ROM
