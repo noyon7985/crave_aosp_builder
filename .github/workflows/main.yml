@@ -275,6 +275,7 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
+        export BLAZE_MAINTAINER=EUREKATEAM ; \
         source build/envsetup.sh && \
 
         echo "Repository: ${{ github.repository }}"; \
