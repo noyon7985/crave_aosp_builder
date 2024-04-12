@@ -106,7 +106,7 @@ jobs:
         ;;
         "CipherOS 14")
           export PROJECTFOLDER="/crave-devspaces/Cipher14"
-          export REPO_INIT="repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs --depth=1"
+          export REPO_INIT="repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen-qpr --git-lfs --depth=1"
         ;;
         esac
         if [ -d "$PROJECTFOLDER" ]; then
@@ -179,7 +179,7 @@ jobs:
                     repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1
                   ;;
                   "CipherOS 14")
-                    repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen --git-lfs --depth=1
+                    repo init -u https://github.com/CipherOS/android_manifest.git -b fourteen-qpr --git-lfs --depth=1
                   ;;
               esac
              else
