@@ -260,12 +260,13 @@ jobs:
         fi \
 
         # Sync the repositories
-        chmod +x /opt/crave/resync.sh && /opt/crave/resync.sh && \
+        repo sync -c -j4 --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync && \
 
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
-        source build/envsetup.sh && \
+        export CHERISH_MAINTAINER=NoYoN ; \
+        . build/envsetup.sh && \
 
         echo "Repository: ${{ github.repository }}"; \
         echo "Run ID: ${{ github.run_id }}"; \
