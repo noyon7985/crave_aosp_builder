@@ -355,9 +355,19 @@ jobs:
         echo "Run ID: ${{ github.run_id }}"; \
 
         # Build the ROM
-        lunch ${{ github.event.inputs.PRODUCT_NAME }}-${{ github.event.inputs.BUILD_TYPE }} && \
         make installclean && \
-        ${{ github.event.inputs.BUILD_COMMAND }}"
+        lunch superior_a10-userdebug
+        mka bacon
+        lunch superior_a20-userdebug
+        mka bacon
+        lunch superior_a20e-userdebug
+        mka bacon
+        lunch superior_a30-userdebug
+        mka bacon
+        lunch superior_a30s-userdebug
+        mka bacon
+        lunch superior_a40-userdebug
+        mka bacon"
       timeout-minutes: 720
 
       # Send Build 'status' notification
