@@ -356,17 +356,17 @@ jobs:
 
         # Build the ROM
         make installclean && \
-        lunch superior_a10-userdebug
-        mka bacon
-        lunch superior_a20-userdebug
-        mka bacon
-        lunch superior_a20e-userdebug
-        mka bacon
-        lunch superior_a30-userdebug
-        mka bacon
-        lunch superior_a30s-userdebug
-        mka bacon
-        lunch superior_a40-userdebug
+        lunch superior_a10-userdebug && \
+        mka bacon"
+        lunch superior_a20-userdebug && \
+        mka bacon"
+        lunch superior_a20e-userdebug && \
+        mka bacon"
+        lunch superior_a30-userdebug && \
+        mka bacon"
+        lunch superior_a30s-userdebug && \
+        mka bacon"
+        lunch superior_a40-userdebug && \
         mka bacon"
       timeout-minutes: 720
 
