@@ -349,6 +349,7 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
+        export SUPERIOR_MAINTAINER=NoYoN ; \
         source build/envsetup.sh && \
 
         echo "Repository: ${{ github.repository }}"; \
@@ -357,18 +358,18 @@ jobs:
         # Build the ROM
         make installclean && \
         lunch superior_a10-userdebug && \
-        mka bacon"
+        mka bacon
         lunch superior_a20-userdebug && \
-        mka bacon"
+        mka bacon
         lunch superior_a20e-userdebug && \
-        mka bacon"
+        mka bacon
         lunch superior_a30-userdebug && \
-        mka bacon"
+        mka bacon
         lunch superior_a30s-userdebug && \
-        mka bacon"
+        mka bacon
         lunch superior_a40-userdebug && \
         mka bacon"
-      timeout-minutes: 720
+      timeout-minutes: 1440
 
       # Send Build 'status' notification
     - name: Telegram Notification
